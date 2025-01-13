@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+  <!-- NuGET package meta data-->
+  <PackageId>Domaincrafters.Domain</PackageId>
+  <Authors>Domaincrafters</Authors>
+  <Description>This package provides basic building block to build domain driven applications.</Description>
+  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  <RepositoryUrl>https://github.com/domaincrafters/ddd_dotnet_domain</RepositoryUrl>
+  <Product>Domaincrafters.Domain</Product>
+  <RepositoryType>git</RepositoryType>
+  <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  <PackageTags>DDD;DomainDrivenDesign</PackageTags>
+  <PackageReleaseNotes>Initial version with domain building blocks</PackageReleaseNotes>
+  <LicenseUrl>https://opensource.org/licenses/MIT</LicenseUrl>
+  <PackageReadmeFile>readme.md</PackageReadmeFile>
+  <Copyright>Domaincrafters</Copyright>
+  </PropertyGroup>
+
+
+    <ItemGroup>
+        <None Include="readme.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+</Project>
