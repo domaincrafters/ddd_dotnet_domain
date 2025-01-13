@@ -1,3 +1,11 @@
+## [0.0.5](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.4...v0.0.5) (2025-01-13)
+
+
+### Bug Fixes
+
+* docs ([39a5ecb](https://github.com/domaincrafters/ddd_dotnet_domain/commit/39a5ecbf2e0ae89e7b7a834d81edf615b4ac11b7))
+* versioning ([9265e72](https://github.com/domaincrafters/ddd_dotnet_domain/commit/9265e729f033502cacf1522cb163bea81f66090c))
+
 # 1.0.0 (2025-01-13)
 
 
