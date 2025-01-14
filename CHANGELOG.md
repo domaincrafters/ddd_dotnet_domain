@@ -1,3 +1,10 @@
+## [0.0.6](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.5...v0.0.6) (2025-01-14)
+
+
+### Bug Fixes
+
+* sonar ([dd9ad50](https://github.com/domaincrafters/ddd_dotnet_domain/commit/dd9ad50025ad94e44a3460d4e91e7960f1877b7b))
+
 ## [0.0.5](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.4...v0.0.5) (2025-01-13)
 
 
