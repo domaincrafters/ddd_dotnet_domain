@@ -33,14 +33,14 @@ jobs:
         ls -al
         cat sonar-project.properties
         dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /s:"./sonar-project.properties"
+        dotnet sonarscanner begin -d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} -s:"./sonar-project.properties"
 
     - name: Test
       run: |
         dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
     - name: End Sonar scan
-      run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+      run: dotnet sonarscanner end -d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
 
   # release:
