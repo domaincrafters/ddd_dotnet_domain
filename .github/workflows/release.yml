@@ -30,7 +30,7 @@ jobs:
     - name: Begin Sonar scan
       run: |
         dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /d:sonar.projectPropertiesFile=sonar-project.properties
 
     - name: Test
       run: |
