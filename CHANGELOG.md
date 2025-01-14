@@ -1,3 +1,10 @@
+## [0.0.7](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.6...v0.0.7) (2025-01-14)
+
+
+### Bug Fixes
+
+* moved classes to own project ([1fbd17b](https://github.com/domaincrafters/ddd_dotnet_domain/commit/1fbd17b8ba9e68147c8a2be14ac29a3677e169c5))
+
 ## [0.0.6](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.5...v0.0.6) (2025-01-14)
 
 
