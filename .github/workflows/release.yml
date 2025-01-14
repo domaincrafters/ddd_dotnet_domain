@@ -9,80 +9,77 @@ permissions:
   packages: write
 
 jobs:
-  QA:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
-
-    - name: Install dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-
-    - name: Begin Sonar scan
-      run: |
-        echo "HALLO"
-        ls -al
-        cat sonar-project.properties
-        dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /s:"/home/runner/work/ddd_dotnet_domain/ddd_dotnet_domain/sonar-project.properties"
-
-    - name: Test
-      run: |
-        dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-
-    - name: End Sonar scan
-      run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
-
-
-  # release:
-  #   needs: QA
+  # QA:
   #   runs-on: ubuntu-latest
-
   #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v3
+  #   - uses: actions/checkout@v3
+  #     with:
+  #       fetch-depth: 0
 
-  #     - name: Setup .NET 8
-  #       uses: actions/setup-dotnet@v3
-  #       with:
-  #         dotnet-version: '8.0.x'
+  #   - name: Setup .NET
+  #     uses: actions/setup-dotnet@v3
+  #     with:
+  #       dotnet-version: '8.0.x'
 
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '20'
+  #   - name: Install dependencies
+  #     run: dotnet restore
 
-  #     - name: Install dependencies (for semantic-release)
-  #       run: npm install
+  #   - name: Build
+  #     run: dotnet build --configuration Release --no-restore
 
-  #     - name: Build
-  #       run: dotnet build --configuration Release
+  #   - name: Begin Sonar scan
+  #     run: |
+  #       echo "HALLO"
+  #       ls -al
+  #       cat sonar-project.properties
+  #       dotnet tool install --global dotnet-sonarscanner
+  #       dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /s:"/home/runner/work/ddd_dotnet_domain/ddd_dotnet_domain/sonar-project.properties"
 
-  #     - name: Semantic release dry-run
-  #       env:
-  #           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-  #       id: release_version
-  #       run: |
-  #         export VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
-  #         echo "version=${VERSION}" >> $GITHUB_OUTPUT
+  #   - name: Test
+  #     run: |
+  #       dotnet test --no-restore --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+  #   - name: End Sonar scan
+  #     run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }}
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (for semantic-release)
+        run: npm install
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Semantic release dry-run
+        env:
+            GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+        id: release_version
+        run: |
+          export VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
       
-  #     - name: Semantic Release
-  #       id: semantic
-  #       env:
-  #           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-  #       run: npx semantic-release
+      - name: Semantic Release
+        id: semantic
+        env:
+            GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+        run: npx semantic-release
 
-  #     - name: Dotnet Pack
-  #       run: dotnet pack --configuration Release -p:PackageVersion=${{ steps.release_version.outputs.version }} -o out
+      - name: Dotnet Pack
+        run: dotnet pack src/Domaincrafters.Domain --configuration Release -p:PackageVersion=${{ steps.release_version.outputs.version }} -o out
         
-  #     - name: Publish to NuGet
-  #       run: dotnet nuget push "out/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json"
+      - name: Publish to NuGet
+        run: dotnet nuget push "out/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json"
