@@ -30,6 +30,7 @@ jobs:
     - name: Begin Sonar scan
       run: |
         echo "HALLO"
+        ls -al
         cat sonar-project.properties
         dotnet tool install --global dotnet-sonarscanner
         dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /d:sonar.projectPropertiesFile=./sonar-project.properties
