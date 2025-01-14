@@ -33,7 +33,7 @@ jobs:
         ls -al
         cat sonar-project.properties
         dotnet tool install --global dotnet-sonarscanner
-        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /d:sonar.projectPropertiesFile=./sonar-project.properties
+        dotnet sonarscanner begin /d:sonar.login=${{ secrets.SONARQUBE_TOKEN }} /s:"./sonar-project.properties"
 
     - name: Test
       run: |
