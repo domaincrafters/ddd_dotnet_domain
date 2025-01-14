@@ -37,6 +37,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
 
   release:
+    needs: QA
     runs-on: ubuntu-latest
 
     steps:
