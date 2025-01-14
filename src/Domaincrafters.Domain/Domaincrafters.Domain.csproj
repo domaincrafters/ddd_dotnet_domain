@@ -23,7 +23,12 @@
 
 
     <ItemGroup>
-        <None Include="readme.md" Pack="true" PackagePath="\"/>
+        <None Include="../readme.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="Optional.net" Version="4.0.0" />
     </ItemGroup>
 
 </Project>
