@@ -34,6 +34,7 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@master
       with:
         args: >
+          -Dsonar.projectBaseDir=${{ github.workspace }}
           -Dsonar.cs.opencover.reportsPaths=TestResults/coverage.opencover.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
