@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-![workflow](https://github.com/domaincrafters/ddd_dotnet_domain/actions/workflows/ci.yml/badge.svg)
+![workflow](https://github.com/domaincrafters/ddd_dotnet_domain/actions/workflows/release.yml/badge.svg)
 ![GitHub Release](https://img.shields.io/github/v/release/domaincrafters/ddd_dotnet_domain)
 [![NuGet](https://img.shields.io/nuget/v/Domaincrafters.Domain
 )](https://img.shields.io/nuget/v/Domaincrafters.Domain

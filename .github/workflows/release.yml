@@ -1,4 +1,4 @@
-name: Build & Publish with Semantic Release
+name: Build & Release
 
 on:
   push:
