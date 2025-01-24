@@ -1,26 +1,31 @@
-using System.Dynamic;
 using Aornis;
 using Domaincrafters.Domain;
 
 namespace UnitTests.Domaincrafters.Domain;
 
-class Seat(
-    IEntityId id,
-    int number
-) : Entity(id)
+sealed class SeatId(string? id = "") : UuidEntityId(id)
 {
-    public int Number { get; private init; } = number;
+}
+
+class Seat: Entity<SeatId>
+{
+    public int Number { get; private init; }
+    public Seat(SeatId id, int number) : base(id)
+    {
+        Number = number;
+    } 
     protected override void ValidateState()
     {
         throw new NotImplementedException();
     }
 }
 
-sealed class SeatRepository() : IRepository<Seat>
+
+sealed class SeatRepository() : IRepository<Seat, SeatId>
 {
     private readonly ISet<Seat> _seats = new HashSet<Seat>();
 
-    public Task<Optional<Seat>> ById(IEntityId id)
+    public Task<Optional<Seat>> ById(SeatId id)
     {
         Optional<Seat> optionalSeat = Optional.Of(_seats.SingleOrDefault(s => s.Id == id));
         return Task.FromResult(optionalSeat);

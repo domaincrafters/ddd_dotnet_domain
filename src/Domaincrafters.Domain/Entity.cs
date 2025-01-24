@@ -7,12 +7,13 @@ namespace Domaincrafters.Domain;
 /// equality checks based on the entity's unique identifier.
 /// </summary>
 /// <param name="id">The unique identifier for this entity.</param>
-public abstract class Entity(IEntityId id) : IEquatable<Entity>
+public abstract class Entity<EntityId>(EntityId id) : IEquatable<Entity<EntityId>>
+where EntityId : IEntityId
 {
     /// <summary>
     /// Unique identifier of the entity.
     /// </summary>
-    public IEntityId Id { get; private init; } = id;
+    public EntityId Id { get; private init; } = id;
 
     /// <summary>
     /// Validates the current state of the entity.
@@ -27,7 +28,7 @@ public abstract class Entity(IEntityId id) : IEquatable<Entity>
     /// <returns>
     /// True if the other entity has the same identifier and type; otherwise, false.
     /// </returns>
-    public bool Equals(Entity? other)
+    public bool Equals(Entity<EntityId>? other)
     {
         if (other is null) return false;
         if (ReferenceEquals(this, other)) return true;
@@ -44,7 +45,7 @@ public abstract class Entity(IEntityId id) : IEquatable<Entity>
     /// </returns>
     public override bool Equals(object? obj)
     {
-        return Equals(obj as Entity);
+        return Equals(obj as Entity<EntityId>);
     }
 
     /// <summary>

@@ -5,14 +5,10 @@ class BookingId(string? id = "") : UuidEntityId(id)
 {
 }
 
-class SeatId(string? id = "") : UuidEntityId(id)
-{
-}
-
 class Booking(
-    IEntityId id,
+    BookingId id,
     string name
-) : Entity(id)
+) : Entity<BookingId>(id)
 {
     public string Name { get; private init; } = name;
     protected override void ValidateState()
@@ -199,5 +195,33 @@ public sealed class EntityTests
 
         // Assert
         Assert.Equal(2, hashSet.Count);
+    }
+
+    [Fact]
+    public void AssigningEntityIdBackToConcreteType_Works()
+    {
+        // Arrange
+        string id = Guid.NewGuid().ToString();
+        BookingId bookingId = new(id);
+        IEntityId entityId = bookingId;
+
+        // Act
+        BookingId newBookingId = (BookingId)entityId;
+
+        // Assert
+        Assert.Equal(bookingId, newBookingId);
+        Booking booking = new(newBookingId, "Booking");
+        CheckIfIdParameterToFunctionsAcceptsIEntityId(booking.Id);
+        CheckIfIdParameterToFunctionsAcceptsConcreteId(booking.Id);
+    }
+
+    private static void CheckIfIdParameterToFunctionsAcceptsIEntityId(IEntityId _entityId)
+    {
+        // Method intentionally left empty.
+    }
+
+    private static void CheckIfIdParameterToFunctionsAcceptsConcreteId(BookingId _bookingId)
+    {
+        // Method intentionally left empty.
     }
 }
