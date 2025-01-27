@@ -19,7 +19,7 @@ where EntityId : IEntityId
     /// Validates the current state of the entity.
     /// </summary>
     /// <exception cref="System.Exception">Thrown when the entity's state is invalid.</exception>
-    protected abstract void ValidateState();
+    public abstract void ValidateState();
 
     /// <summary>
     /// Determines whether the specified entity is equal to the current entity.

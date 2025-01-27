@@ -11,7 +11,7 @@ class Booking(
 ) : Entity<BookingId>(id)
 {
     public string Name { get; private init; } = name;
-    protected override void ValidateState()
+    public override void ValidateState()
     {
         throw new NotImplementedException();
     }

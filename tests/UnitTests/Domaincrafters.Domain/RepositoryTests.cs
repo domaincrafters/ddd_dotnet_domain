@@ -14,7 +14,7 @@ class Seat: Entity<SeatId>
     {
         Number = number;
     } 
-    protected override void ValidateState()
+    public override void ValidateState()
     {
         throw new NotImplementedException();
     }
