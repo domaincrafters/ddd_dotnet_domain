@@ -1,3 +1,10 @@
+## [0.0.8](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.7...v0.0.8) (2025-01-24)
+
+
+### Bug Fixes
+
+* Entity.Id casting issues ([2b314bb](https://github.com/domaincrafters/ddd_dotnet_domain/commit/2b314bb605686f7164401443d96cbb5607367ec0))
+
 ## [0.0.7](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.6...v0.0.7) (2025-01-14)
 
 
