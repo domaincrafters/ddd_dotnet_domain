@@ -1,3 +1,10 @@
+# [0.1.0](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.9...v0.1.0) (2025-02-07)
+
+
+### Features
+
+* added domain event concepts ([e6eb73f](https://github.com/domaincrafters/ddd_dotnet_domain/commit/e6eb73f04439fed5147c34c5e96da1bbd35565c1))
+
 ## [0.0.9](https://github.com/domaincrafters/ddd_dotnet_domain/compare/v0.0.8...v0.0.9) (2025-01-27)
 
 
