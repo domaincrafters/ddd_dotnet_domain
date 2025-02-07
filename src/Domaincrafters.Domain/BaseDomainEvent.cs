@@ -33,3 +33,4 @@ public abstract class BaseDomainEvent(
     /// </summary>
     public DateTime OccurredOn => _occurredOn;
 }
+
